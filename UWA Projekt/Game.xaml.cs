@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-
 using System.Threading.Tasks;
-
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
+using Windows.Media.SpeechSynthesis;
 
 namespace UWA_Projekt
 {
@@ -19,11 +17,12 @@ namespace UWA_Projekt
         int delay;
         double lastScore;
         Level DifficultyLevel;
-        Boolean Exit = false;
+        Boolean Exit = false, Speaking = true; // tu wrzucić wartość z localstorage
         List<string> dataList = new List<string>();
         List<string> tempList = new List<string>();
         private const string FILE_NAME_DATA = "./Dane.txt"; // to musi być z xml
         private const string FILE_NAME_BESTSCORE = "./BestScore.txt";
+        private SpeechSynthesizer synth = new SpeechSynthesizer();
 
         public Game()
         {
@@ -33,7 +32,16 @@ namespace UWA_Projekt
             setDelay();
             ChangeProgressBar();
             ReadData();
+            if(Speaking) Speak(dataList[0]);
             this.DataContext = gameContext;
+        }
+
+        private async void Speak(String word)
+        {
+            MediaElement media = new MediaElement();
+            SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync(word);
+            media.SetSource(stream, stream.ContentType);
+            media.Play();
         }
 
         private void setDelay()
@@ -114,8 +122,11 @@ namespace UWA_Projekt
         {
             if (e.Key == Windows.System.VirtualKey.Space )
             {
+
                 if (InputTextBox.Text.Equals(dataList[0] + " "))
                 {
+                    if (Speaking) Speak(dataList[1]);
+
                     if (dataList.Count == tempList.Count / 2)
                     {
                         dataList.RemoveAt(0);
@@ -166,6 +177,8 @@ namespace UWA_Projekt
                 }
                 else
                 {
+                    if (Speaking) Speak(dataList[0]);
+
                     gameContext.MistakeCounter++;
                     Refresh();
                 }
