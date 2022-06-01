@@ -19,12 +19,9 @@ namespace UWA_Projekt {
 
     public sealed partial class Options : Page
     {
-        Level level = Level.Easy;
         private const string FILE_NAME = "./BestScore.txt";
         TextData textData = new TextData { DifficultLevelText = "Poziom trudności : Easy" };
         Windows.Storage.ApplicationDataContainer localStorage = Windows.Storage.ApplicationData.Current.LocalSettings;
-        
-        
 
         public Options()
         {
@@ -37,20 +34,17 @@ namespace UWA_Projekt {
 
         private void DifficultLevel_Click(object sender, RoutedEventArgs e)
         {
-            if (DifficultLevelButton.Content.Equals("Poziom trudności : Easy"))
+            if(localStorage.Values["difficulty"].ToString() == "Easy")
             {
-                textData.DifficultLevelText = "Poziom trudności : Medium";
-                level = Level.Medium;
+                localStorage.Values["difficulty"] = Level.Medium.ToString();
             }
-            else if (DifficultLevelButton.Content.Equals("Poziom trudności : Medium"))
+            else if (localStorage.Values["difficulty"].ToString() == "Medium")
             {
-                textData.DifficultLevelText = "Poziom trudności : Hard";
-                level = Level.Hard;
+                localStorage.Values["difficulty"] = Level.Hard.ToString();
             }
-            else if (DifficultLevelButton.Content.Equals("Poziom trudności : Hard"))
+            else if (localStorage.Values["difficulty"].ToString() == "Hard")
             {
-                textData.DifficultLevelText = "Poziom trudności : Easy";
-                level = Level.Easy;
+                localStorage.Values["difficulty"] = Level.Easy.ToString();
             }
             Refresh();
         }
@@ -67,8 +61,19 @@ namespace UWA_Projekt {
                 {
                     txtBtn.Content = "CZYTANIE TEXTU: ON";
                 }
-            
-            info.Text = localStorage.Values["readingText"].ToString();
+
+            if (localStorage.Values["difficulty"].ToString() == "Easy")
+            {
+                DifficultLevelButton.Content = "Poziom trudności : Easy";
+            }
+            else if (localStorage.Values["difficulty"].ToString() == "Medium")
+            {
+                DifficultLevelButton.Content = "Poziom trudności : Medium";
+            }
+            else if (localStorage.Values["difficulty"].ToString() == "Hard")
+            {
+                DifficultLevelButton.Content = "Poziom trudności : Hard";
+            }
 
         }
 

@@ -19,7 +19,6 @@ namespace UWA_Projekt {
 
     public sealed partial class MainPage : Page
     {
-        Level level = Level.Easy;
         private const string FILE_NAME = "./BestScore.txt";
         TextData textData = new TextData { DifficultLevelText = "Poziom trudności : Easy" };
         Windows.Storage.ApplicationDataContainer localStorage = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -29,7 +28,6 @@ namespace UWA_Projekt {
         {
             this.InitializeComponent();
             this.DataContext = textData;
-            info.Text = localStorage.Values["readingText"].ToString();
         }
 
         

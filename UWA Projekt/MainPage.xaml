@@ -17,7 +17,6 @@
         <Button Content="START" HorizontalAlignment="Center" Margin="0,226,0,0" VerticalAlignment="Top" Height="69" Width="216" Click="StartButton_Click"/>
         <Button Content="OPCJE" HorizontalAlignment="Center" Margin="0,336,0,0" VerticalAlignment="Top" Height="69" Width="216" Click="OptionButton_Click"/>
         <Button Content="WYJŚCIE" HorizontalAlignment="Center" Margin="0,446,0,0" VerticalAlignment="Top" Height="69" Width="216" Click="ExitButton_Click"/>
-        <TextBox x:Name="info" VerticalAlignment="Bottom" Width="150"/>
 
     </Grid>
 </Page>

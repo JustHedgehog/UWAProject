@@ -33,6 +33,7 @@ namespace UWA_Projekt
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             localStorage.Values["readingText"] = false;
+            localStorage.Values["difficulty"] = Level.Easy.ToString();
         }
 
         /// <summary>

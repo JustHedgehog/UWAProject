@@ -13,11 +13,13 @@ namespace UWA_Projekt
 
     public sealed partial class Game : Page
     {
+        Windows.Storage.ApplicationDataContainer localStorage = Windows.Storage.ApplicationData.Current.LocalSettings;
         GameData gameContext = new GameData { Time = 75, Score = 0, MistakeCounter = 0 };
         int delay;
         double lastScore;
         Level DifficultyLevel;
-        Boolean Exit = false, Speaking = true; // tu wrzucić wartość z localstorage
+        Boolean Exit = false;
+        Boolean Speaking;
         List<string> dataList = new List<string>();
         List<string> tempList = new List<string>();
         private const string FILE_NAME_DATA = "./Dane.txt"; // to musi być z xml
@@ -27,11 +29,12 @@ namespace UWA_Projekt
         public Game()
         {
             InitializeComponent();
-            DifficultyLevel = Level.Easy; // tu też local storage
+            DifficultyLevel = (Level)Enum.Parse(typeof(Level), localStorage.Values["difficulty"].ToString());
             lastScore = 100; //tu z local storage
             setDelay();
             ChangeProgressBar();
             ReadData();
+            Speaking = (bool)localStorage.Values["readingText"];
             if(Speaking) Speak(dataList[0]);
             this.DataContext = gameContext;
         }
