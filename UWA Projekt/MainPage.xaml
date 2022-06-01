@@ -6,9 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Height="600" 
+    Width="400">
 
     <Grid>
+        <TextBlock Text="FASTWRITE&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.502,0.593" Height="62" Width="259" FontSize="48"/>
+        <TextBlock Text="Best Score&#xD;&#xA;" HorizontalAlignment="Left" Margin="307,10,0,0" VerticalAlignment="Top" Height="31"/>
+        <TextBlock x:Name="BestScoreTextBlock" Text="{Binding BestScore,Mode=TwoWay}" HorizontalAlignment="Left" Margin="307,46,0,0" VerticalAlignment="Top" Width="65"/>
+        <Button x:Name="DifficultLevelButton" Content="{Binding DifficultLevelText, Mode=TwoWay}" HorizontalAlignment="Center" Margin="0,234,0,0" VerticalAlignment="Top" Height="69" Width="216" Click="DifficultLevel_Click" />
+        <Button Content="START" HorizontalAlignment="Center" Margin="0,336,0,0" VerticalAlignment="Top" Height="69" Width="216" Click="StartButton_Click"/>
+        <Button Content="WYJŚCIE" HorizontalAlignment="Center" Margin="0,446,0,0" VerticalAlignment="Top" Height="69" Width="216" Click="ExitButton_Click"/>
 
     </Grid>
 </Page>

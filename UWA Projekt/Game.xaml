@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="UWA_Projekt.Game"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWA_Projekt"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Height="340"
+    Width="1200">
+
+    <Grid Height="634" VerticalAlignment="Top" HorizontalAlignment="Center" Width="1200">
+        <TextBlock Text="Liczba błędów:" HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top" Width="88"/>
+        <TextBlock x:Name="MistakeCounterTextBlock" Text="{Binding MistakeCounter, Mode=TwoWay}" Margin="103,256,1050,352"/>
+        <Button Content="WYJŚCIE" HorizontalAlignment="Center" Margin="0,256,0,0" VerticalAlignment="Top" Width="392" Height="37" Click="ExitButton_Click"/>
+        <TextBlock Text="Liczba punktów : " HorizontalAlignment="Left" Margin="952,256,0,0" VerticalAlignment="Top" Width="104"/>
+        <TextBlock x:Name="ScoreTextBlock" Text="{Binding Score, Mode=TwoWay}" HorizontalAlignment="Left" Margin="1056,256,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.197,0.022" Width="134" Height="26"/>
+        <TextBlock Text="{Binding Text, Mode=TwoWay}"  x:Name="TextAreaBlock" HorizontalAlignment="Center" Margin="0,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="84" Width="1180" FontSize="18"><Run/><LineBreak/><Run/></TextBlock>
+        <ProgressBar Value="{Binding Time,Mode=TwoWay}" x:Name="ProgressBar" Margin="10,10,10,0" Height="39" VerticalAlignment="Top" />
+        <TextBox x:Name="InputTextBox" HorizontalAlignment="Center" Margin="0,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1180" Height="38" KeyUp="InputTextBox_KeyUp" FontSize="18"/>
+
+    </Grid>
+</Page>
