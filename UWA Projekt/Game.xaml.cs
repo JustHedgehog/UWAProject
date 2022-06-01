@@ -23,6 +23,7 @@ namespace UWA_Projekt
         Boolean Speaking;
         List<string> dataList = new List<string>();
         List<string> tempList = new List<string>();
+        String[] splitted;
         private const string FILE_NAME_DATA = "./Dane.xml";
         private const string FILE_NAME_BESTSCORE = "./BestScore.xml";
         private SpeechSynthesizer synth = new SpeechSynthesizer();
@@ -198,18 +199,21 @@ namespace UWA_Projekt
                     switch (DifficultyLevel)
                     {
                         case Level.Easy:
-                             reader.ReadToFollowing("easy");
-                            dataList.Add(reader.ReadElementContentAsString());
+                            reader.ReadToFollowing("easy");
+                            splitted = reader.ReadElementContentAsString().Split(' ');
+                            dataList = new List<string>(splitted);
                             break;
 
                         case Level.Medium:
                             reader.ReadToFollowing("medium");
-                            dataList.Add(reader.ReadElementContentAsString());
+                            splitted = reader.ReadElementContentAsString().Split(' ');
+                            dataList = new List<string>(splitted);
                             break;
 
                         case Level.Hard:
                             reader.ReadToFollowing("hard");
-                            dataList.Add(reader.ReadElementContentAsString());
+                            splitted = reader.ReadElementContentAsString().Split(' ');
+                            dataList = new List<string>(splitted);
                             break;
                     }
               
