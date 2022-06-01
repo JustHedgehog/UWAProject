@@ -15,39 +15,24 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 
-namespace UWA_Projekt { 
+namespace UWA_Projekt {
 
     public sealed partial class MainPage : Page
     {
         Level level = Level.Easy;
         private const string FILE_NAME = "./BestScore.txt";
         TextData textData = new TextData { DifficultLevelText = "Poziom trudności : Easy" };
+        Windows.Storage.ApplicationDataContainer localStorage = Windows.Storage.ApplicationData.Current.LocalSettings;
+        
 
         public MainPage()
         {
             this.InitializeComponent();
             this.DataContext = textData;
+            info.Text = localStorage.Values["readingText"].ToString();
         }
 
-        private void DifficultLevel_Click(object sender, RoutedEventArgs e)
-        {
-            if (DifficultLevelButton.Content.Equals("Poziom trudności : Easy"))
-            {
-                textData.DifficultLevelText = "Poziom trudności : Medium";
-                level = Level.Medium;
-            }
-            else if (DifficultLevelButton.Content.Equals("Poziom trudności : Medium"))
-            {
-                textData.DifficultLevelText = "Poziom trudności : Hard";
-                level = Level.Hard;
-            }
-            else if (DifficultLevelButton.Content.Equals("Poziom trudności : Hard"))
-            {
-                textData.DifficultLevelText = "Poziom trudności : Easy";
-                level = Level.Easy;
-            }
-            Refresh();
-        }
+        
 
         private void Refresh()
         {
@@ -80,6 +65,11 @@ namespace UWA_Projekt {
                 var dialog = new MessageDialog(ex.Message);
                 await dialog.ShowAsync();
             }
+        }
+
+        private void OptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Options));
         }
     }
 }

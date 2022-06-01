@@ -17,11 +17,13 @@ using Windows.UI.Xaml.Navigation;
 
 namespace UWA_Projekt
 {
+
     /// <summary>
     /// Zapewnia zachowanie specyficzne dla aplikacji, aby uzupełnić domyślną klasę aplikacji.
     /// </summary>
     sealed partial class App : Application
     {
+        Windows.Storage.ApplicationDataContainer localStorage = Windows.Storage.ApplicationData.Current.LocalSettings;
         /// <summary>
         /// Inicjuje pojedynczy obiekt aplikacji. Jest to pierwszy wiersz napisanego kodu
         /// wykonywanego i jest logicznym odpowiednikiem metod main() lub WinMain().
@@ -30,6 +32,7 @@ namespace UWA_Projekt
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            localStorage.Values["readingText"] = false;
         }
 
         /// <summary>
