@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -22,8 +23,8 @@ namespace UWA_Projekt
         Boolean Speaking;
         List<string> dataList = new List<string>();
         List<string> tempList = new List<string>();
-        private const string FILE_NAME_DATA = "./Dane.txt"; // to musi być z xml
-        private const string FILE_NAME_BESTSCORE = "./BestScore.txt";
+        private const string FILE_NAME_DATA = "./Dane.xml";
+        private const string FILE_NAME_BESTSCORE = "./BestScore.xml";
         private SpeechSynthesizer synth = new SpeechSynthesizer();
 
         public Game()
@@ -188,17 +189,30 @@ namespace UWA_Projekt
             }
         }
 
-        private async void ReadData() //z xmla trza wczytywać więc do przerobienia
+        private async void ReadData()
         {
             try
             {
-                using (StreamReader sr = new StreamReader(FILE_NAME_DATA))
+                using (XmlReader reader = XmlReader.Create(FILE_NAME_DATA))   
                 {
-                    while (!sr.EndOfStream)
+                    switch (DifficultyLevel)
                     {
-                        dataList.Add(sr.ReadLine());
-                    }
+                        case Level.Easy:
+                             reader.ReadToFollowing("easy");
+                            dataList.Add(reader.ReadElementContentAsString());
+                            break;
 
+                        case Level.Medium:
+                            reader.ReadToFollowing("medium");
+                            dataList.Add(reader.ReadElementContentAsString());
+                            break;
+
+                        case Level.Hard:
+                            reader.ReadToFollowing("hard");
+                            dataList.Add(reader.ReadElementContentAsString());
+                            break;
+                    }
+              
                     tempList.AddRange(dataList);
 
                     for (int i = 0; i < dataList.Count; i++)
@@ -207,6 +221,7 @@ namespace UWA_Projekt
                     }
                     Refresh();
                 }
+
             }
             catch (Exception ex)
             {
