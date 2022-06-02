@@ -31,10 +31,29 @@ namespace UWA_Projekt
         {
             InitializeComponent();
             DifficultyLevel = (Level)Enum.Parse(typeof(Level), localStorage.Values["difficulty"].ToString());
-            if (localStorage.Values["bestScore"] == null)
-                lastScore = 0;
-            else
-                lastScore = Convert.ToDouble(localStorage.Values["bestScore"]);
+            switch (DifficultyLevel)
+            {
+                case Level.Easy:
+                    if (localStorage.Values["easyBestScore"] == null)
+                        lastScore = 0;
+                    else
+                        lastScore = Convert.ToDouble(localStorage.Values["easyBestScore"]);
+                    break;
+
+                case Level.Medium:
+                    if (localStorage.Values["mediumBestScore"] == null)
+                        lastScore = 0;
+                    else
+                        lastScore = Convert.ToDouble(localStorage.Values["mediumBestScore"]);
+                    break;
+
+                case Level.Hard:
+                    if (localStorage.Values["hardBestScore"] == null)
+                        lastScore = 0;
+                    else
+                        lastScore = Convert.ToDouble(localStorage.Values["hardBestScore"]);
+                    break;
+            }
             
                 
             setDelay();
@@ -240,8 +259,24 @@ namespace UWA_Projekt
 
         private async void WriteData()
         {
-            if (gameContext.Score > lastScore)
-                localStorage.Values["bestScore"] = gameContext.Score.ToString();
+
+            switch (DifficultyLevel)
+            {
+                case Level.Easy:
+                    if (gameContext.Score > lastScore)
+                        localStorage.Values["easyBestScore"] = gameContext.Score.ToString();
+                    break;
+
+                case Level.Medium:
+                    if (gameContext.Score > lastScore)
+                        localStorage.Values["mediumBestScore"] = gameContext.Score.ToString();
+                    break;
+
+                case Level.Hard:
+                    if (gameContext.Score > lastScore)
+                        localStorage.Values["hardBestScore"] = gameContext.Score.ToString();
+                    break;
+            }
         }
 
     }

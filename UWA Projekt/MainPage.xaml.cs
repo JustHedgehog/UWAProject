@@ -21,11 +21,13 @@ namespace UWA_Projekt {
     {
         TextData textData = new TextData { DifficultLevelText = "Poziom trudności : Easy" };
         Windows.Storage.ApplicationDataContainer localStorage = Windows.Storage.ApplicationData.Current.LocalSettings;
+        Level DifficultyLevel;
 
         public MainPage()
         {
             this.InitializeComponent();
             this.DataContext = textData;
+            DifficultyLevel = (Level)Enum.Parse(typeof(Level), localStorage.Values["difficulty"].ToString());
             ReadBestScore();
         }
 
@@ -48,9 +50,26 @@ namespace UWA_Projekt {
             Environment.Exit(0);
         }
 
-        private async void ReadBestScore()
+        private void ReadBestScore()
         {
-            BestScoreTextBlock.Text = localStorage.Values["bestScore"].ToString();
+
+            switch (DifficultyLevel)
+            {
+                case Level.Easy:
+                    if (localStorage.Values["easyBestScore"] != null)
+                        BestScoreTextBlock.Text = localStorage.Values["easyBestScore"].ToString();
+                    break;
+
+                case Level.Medium:
+                    if (localStorage.Values["mediumBestScore"] != null)
+                        BestScoreTextBlock.Text = localStorage.Values["mediumBestScore"].ToString();
+                    break;
+
+                case Level.Hard:
+                    if (localStorage.Values["hardBestScore"] != null)
+                        BestScoreTextBlock.Text = localStorage.Values["hardBestScore"].ToString();
+                    break;
+            }
         }
 
         private void OptionButton_Click(object sender, RoutedEventArgs e)
