@@ -19,15 +19,14 @@ namespace UWA_Projekt {
 
     public sealed partial class MainPage : Page
     {
-        private const string FILE_NAME = "./BestScore.txt";
         TextData textData = new TextData { DifficultLevelText = "Poziom trudności : Easy" };
         Windows.Storage.ApplicationDataContainer localStorage = Windows.Storage.ApplicationData.Current.LocalSettings;
-        
 
         public MainPage()
         {
             this.InitializeComponent();
             this.DataContext = textData;
+            ReadBestScore();
         }
 
         
@@ -51,18 +50,7 @@ namespace UWA_Projekt {
 
         private async void ReadBestScore()
         {
-            try
-            {
-                using (StreamReader sr = new StreamReader(FILE_NAME))
-                {
-                    BestScoreTextBlock.Text =  sr.ReadLine().ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                var dialog = new MessageDialog(ex.Message);
-                await dialog.ShowAsync();
-            }
+            BestScoreTextBlock.Text = localStorage.Values["bestScore"].ToString();
         }
 
         private void OptionButton_Click(object sender, RoutedEventArgs e)

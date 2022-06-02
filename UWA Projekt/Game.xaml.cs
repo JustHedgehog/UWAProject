@@ -25,14 +25,18 @@ namespace UWA_Projekt
         List<string> tempList = new List<string>();
         String[] splitted;
         private const string FILE_NAME_DATA = "./Dane.xml";
-        private const string FILE_NAME_BESTSCORE = "./BestScore.xml";
         private SpeechSynthesizer synth = new SpeechSynthesizer();
 
         public Game()
         {
             InitializeComponent();
             DifficultyLevel = (Level)Enum.Parse(typeof(Level), localStorage.Values["difficulty"].ToString());
-            lastScore = 100; //tu z local storage
+            if (localStorage.Values["bestScore"] == null)
+                lastScore = 0;
+            else
+                lastScore = Convert.ToDouble(localStorage.Values["bestScore"]);
+            
+                
             setDelay();
             ChangeProgressBar();
             ReadData();
@@ -236,21 +240,8 @@ namespace UWA_Projekt
 
         private async void WriteData()
         {
-            try
-            {
-                using (StreamWriter sw = new StreamWriter(FILE_NAME_BESTSCORE))
-                {
-                    if (gameContext.Score > lastScore)
-                        sw.WriteLine(gameContext.Score);
-                    else
-                        sw.WriteLine(lastScore);
-                }
-            }
-            catch (Exception ex)
-            {
-                var dialog = new MessageDialog(ex.Message);
-                await dialog.ShowAsync();
-            }
+            if (gameContext.Score > lastScore)
+                localStorage.Values["bestScore"] = gameContext.Score.ToString();
         }
 
     }
