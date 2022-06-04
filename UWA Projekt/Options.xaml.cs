@@ -19,16 +19,12 @@ namespace UWA_Projekt {
 
     public sealed partial class Options : Page
     {
-        private const string FILE_NAME = "./BestScore.txt";
-        TextData textData = new TextData { DifficultLevelText = "Poziom trudności : Easy" };
         Windows.Storage.ApplicationDataContainer localStorage = Windows.Storage.ApplicationData.Current.LocalSettings;
 
         public Options()
         {
             this.InitializeComponent();
-            this.DataContext = textData;
             Refresh();
-            
 
         }
 
@@ -51,8 +47,6 @@ namespace UWA_Projekt {
 
         private void Refresh()
         {
-            //this.DataContext = null;
-            //this.DataContext = textData;
                 if ((bool)localStorage.Values["readingText"] == false)
                 {
                     txtBtn.Content = "CZYTANIE TEXTU: OFF";
@@ -76,8 +70,6 @@ namespace UWA_Projekt {
             }
 
         }
-
-
 
         private void ReadingTextButton_Click(object sender, RoutedEventArgs e)
         {

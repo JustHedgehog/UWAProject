@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iJ/BnY6nSm93rlL89K2KjvrARD3kvYve66Z5Cp231tY3Tcx5U4wGceQfeOhH5/50vwQnnrD7VnPz9fUiBe0iDQ==",
+  "dgSpecHash": "TTf80KftnAYfopkQANHBITtu46+xNd/U/xcOU6eSTQqr/8DNVr2dL96kot/uJ7vC76GguWfzeazonKVYn48Xeg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\frixe\\source\\repos\\UWAProject\\UWA Projekt\\UWA Projekt.csproj",
+  "projectFilePath": "E:\\Desktop\\UwuProjekt\\UWAProject\\UWA Projekt\\UWA Projekt.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.net.native.compiler\\2.2.11-rel-30601-02\\microsoft.net.native.compiler.2.2.11-rel-30601-02.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.net.uwpcoreruntimesdk\\2.2.13\\microsoft.net.uwpcoreruntimesdk.2.2.13.nupkg.sha512",

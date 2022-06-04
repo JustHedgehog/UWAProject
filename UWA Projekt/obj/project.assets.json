@@ -8159,18 +8159,18 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\frixe\\.nuget\\packages\\": {},
+    "C:\\Users\\Seba3\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\frixe\\source\\repos\\UWAProject\\UWA Projekt\\UWA Projekt.csproj",
+      "projectUniqueName": "E:\\Desktop\\UwuProjekt\\UWAProject\\UWA Projekt\\UWA Projekt.csproj",
       "projectName": "UWA Projekt",
-      "projectPath": "C:\\Users\\frixe\\source\\repos\\UWAProject\\UWA Projekt\\UWA Projekt.csproj",
-      "packagesPath": "C:\\Users\\frixe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\frixe\\source\\repos\\UWAProject\\UWA Projekt\\obj\\",
+      "projectPath": "E:\\Desktop\\UwuProjekt\\UWAProject\\UWA Projekt\\UWA Projekt.csproj",
+      "packagesPath": "C:\\Users\\Seba3\\.nuget\\packages\\",
+      "outputPath": "E:\\Desktop\\UwuProjekt\\UWAProject\\UWA Projekt\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -8178,7 +8178,7 @@
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\frixe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Seba3\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

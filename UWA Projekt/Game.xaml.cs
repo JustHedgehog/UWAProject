@@ -104,8 +104,7 @@ namespace UWA_Projekt
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             WriteData();
-            Frame frame = Window.Current.Content as Frame;
-            frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof(MainPage));
             Exit = true;
         }
 
@@ -118,7 +117,6 @@ namespace UWA_Projekt
 
                     while (gameContext.Time > 0 && Exit == false)
                     {
-                        System.Diagnostics.Debug.WriteLine("Time  " + gameContext.Time);
 
                         Task.Delay(delay).Wait();
                         ProgressBar.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -146,7 +144,7 @@ namespace UWA_Projekt
         }
 
 
-        private async void InputTextBox_KeyUp(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e) // tu gdzieś trza dodać syntezator mowy
+        private async void InputTextBox_KeyUp(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e) 
         {
             if (e.Key == Windows.System.VirtualKey.Space )
             {
@@ -254,6 +252,7 @@ namespace UWA_Projekt
             {
                 var dialog = new MessageDialog(ex.Message);
                 await dialog.ShowAsync();
+                App.Current.Exit();
             }
         }
 
@@ -265,16 +264,19 @@ namespace UWA_Projekt
                 case Level.Easy:
                     if (gameContext.Score > lastScore)
                         localStorage.Values["easyBestScore"] = gameContext.Score.ToString();
+                    localStorage.Values["Recording"] = localStorage.Values["Recording"] + "-" + gameContext.Score.ToString() + ";" + DifficultyLevel + ";" + DateTime.Now.ToString();
                     break;
 
                 case Level.Medium:
                     if (gameContext.Score > lastScore)
                         localStorage.Values["mediumBestScore"] = gameContext.Score.ToString();
+                    localStorage.Values["Recording"] = localStorage.Values["Recording"] + "-" + gameContext.Score.ToString() + ";" + DifficultyLevel + ";" + DateTime.Now.ToString();
                     break;
 
                 case Level.Hard:
                     if (gameContext.Score > lastScore)
                         localStorage.Values["hardBestScore"] = gameContext.Score.ToString();
+                    localStorage.Values["Recording"] = localStorage.Values["Recording"] + "-" + gameContext.Score.ToString() + ";"+ DifficultyLevel +";" + DateTime.Now.ToString();
                     break;
             }
         }

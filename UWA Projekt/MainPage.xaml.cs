@@ -19,24 +19,14 @@ namespace UWA_Projekt {
 
     public sealed partial class MainPage : Page
     {
-        TextData textData = new TextData { DifficultLevelText = "Poziom trudności : Easy" };
         Windows.Storage.ApplicationDataContainer localStorage = Windows.Storage.ApplicationData.Current.LocalSettings;
         Level DifficultyLevel;
 
         public MainPage()
         {
             this.InitializeComponent();
-            this.DataContext = textData;
             DifficultyLevel = (Level)Enum.Parse(typeof(Level), localStorage.Values["difficulty"].ToString());
             ReadBestScore();
-        }
-
-        
-
-        private void Refresh()
-        {
-            this.DataContext = null;
-            this.DataContext = textData;
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
@@ -75,6 +65,11 @@ namespace UWA_Projekt {
         private void OptionButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Options));
+        }
+
+        private void SessionButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SessionPage));
         }
     }
 }
